@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ირინა & გიორგი | ქორწილი</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Playfair Display',serif;}
+
+body{
+  background:#f7f2ea;
+  color:#3a3a3a;
+  overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  background:linear-gradient(180deg,#fff,#f3eadf);
+  overflow:hidden;
+  perspective:1000px;
+}
+
+/* TEXT */
+.hero h1{
+  font-family:'Great Vibes',cursive;
+  font-size:64px;
+  background:linear-gradient(45deg,#b08d57,#6b4f2a);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  margin-top:10px;
+  font-size:18px;
+  opacity:.8;
+}
+
+/* 🌸 ANIMATED SILHOUETTE (3D + FLOAT) */
+.hero::before{
+  content:"";
+  position:absolute;
+  bottom:-10px;
+  left:50%;
+  transform:translateX(-50%);
+  width:420px;
+  height:520px;
+  background:url("https://i.ibb.co/0j1vXvQ/wedding-silhouette.png") no-repeat center;
+  background-size:contain;
+  opacity:0.15;
+  filter:grayscale(100%);
+  animation:floatSilhouette 6s ease-in-out infinite;
+  transform-style:preserve-3d;
+  pointer-events:none;
+}
+
+/* soft glow layer for depth */
+.hero::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:500px;
+  height:600px;
+  background:radial-gradient(circle,rgba(176,141,87,0.15),transparent 70%);
+  animation:pulseGlow 5s infinite ease-in-out;
+  pointer-events:none;
+}
+
+@keyframes floatSilhouette{
+  0%{
+    transform:translateX(-50%) translateY(10px) scale(1);
+  }
+  50%{
+    transform:translateX(-50%) translateY(-10px) scale(1.03);
+  }
+  100%{
+    transform:translateX(-50%) translateY(10px) scale(1);
+  }
+}
+
+@keyframes pulseGlow{
+  0%,100%{opacity:.4;}
+  50%{opacity:.8;}
+}
+
+/* HEARTS */
+.heart{
+  position:absolute;
+  color:#b08d57;
+  animation:float 12s linear infinite;
+  opacity:.25;
+}
+@keyframes float{
+  0%{transform:translateY(100vh) scale(.5);}
+  100%{transform:translateY(-10vh) scale(1.2);}
+}
+
+/* SECTIONS */
+section{
+  padding:80px 20px;
+  text-align:center;
+}
+
+h2{
+  font-size:28px;
+  margin-bottom:20px;
+  color:#b08d57;
+}
+
+/* CARD */
+.card{
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(10px);
+  padding:20px;
+  border-radius:15px;
+  max-width:420px;
+  margin:20px auto;
+  border:1px solid rgba(0,0,0,0.05);
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-5px);
+}
+
+/* COUNTDOWN */
+.countdown{
+  font-size:20px;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  max-width:900px;
+  margin:auto;
+}
+.gallery div{
+  height:200px;
+  background:#e8dccb;
+  border-radius:10px;
+  transition:.3s;
+}
+.gallery div:hover{
+  transform:scale(1.05) rotateX(5deg);
+}
+
+/* BUTTON */
+button{
+  background:#b08d57;
+  color:#fff;
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* MUSIC */
+#musicBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#b08d57;
+  padding:12px;
+  border-radius:50%;
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>ირინა & გიორგი</h1>
+  <p>გიწვევთ ქორწილში</p>
+  <p>13 სექტემბერი, 2026 • ზუგდიდი, ბაგრატიონი</p>
+</div>
+
+<!-- FLOATING HEARTS -->
+<script>
+for(let i=0;i<25;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(6+Math.random()*10)+"s";
+  document.body.appendChild(h);
+}
+</script>
+
+<!-- DETAILS -->
+<section>
+  <h2>დეტალები</h2>
+  <div class="card">
+    <p>გელოდებით ამ განსაკუთრებულ დღეს თქვენთან ერთად 💍</p>
+    <div class="countdown" id="countdown"></div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section>
+  <h2>ჩვენი ისტორია</h2>
+  <div class="card">
+    <p>ერთი შეხვედრიდან — სამუდამო სიყვარულამდე ❤️</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section>
+  <h2>გალერეა</h2>
+  <div class="gallery">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section>
+  <h2>დადასტურება (RSVP)</h2>
+  <div class="card">
+    <input placeholder="თქვენი სახელი"/>
+    <button onclick="alert('მადლობა! 💛')">დადასტურება</button>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<button id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+<audio id="audio" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_5c7c3c7c8b.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const target=new Date("2026-09-13").getTime();
+
+setInterval(()=>{
+  let now=new Date().getTime();
+  let d=target-now;
+  document.getElementById("countdown").innerText=
+  Math.floor(d/(1000*60*60*24))+" დღე დარჩა";
+},1000);
+
+let playing=false;
+function toggleMusic(){
+  let audio=document.getElementById("audio");
+  if(!playing){audio.play();playing=true;}
+  else{audio.pause();playing=false;}
+}
+</script>
+
+</body>
+</html>
